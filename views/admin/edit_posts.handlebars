@@ -1,0 +1,44 @@
+<h1>Edit Post</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/posts/edit" method="post">
+            <input type="hidden" name="id" value="{{post._id}}">
+            <label for="title">Title:</label>
+            <input required class="form-control" type="text" name="title" id="title" placeholder="Title" value="{{post.title}}">
+            <br>
+            <label  for="slug">Slug:</label>
+            <input required class="form-control" type="text" name="slug" id="slug" placeholder="Slug" value="{{post.slug}}">
+            <br>
+            <label for="description">Description: </label>
+            <input required class="form-control" type="text" name="description" id="description" placeholder="Description" value="{{post.description}}">
+            <br>
+            <label for="content">Content: </label>
+            <textarea required class="form-control" name="content" id="content" cols="30" rows="10">
+            {{post.content}}
+            </textarea>
+            <br>
+            <label for="category">Category</label>
+            <br>
+            <select required class="custom-select" name="category" id="category" >
+                {{#each categories}}
+                    <option  value="{{_id}}">{{name}} </option>
+                {{else}}
+                    <option value="0">No categories found</option>
+                {{/each}}
+                
+                
+            </select>
+            <br>
+            <button type="submit" class="btn btn-success mt-4">Edit Post</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function setSelected(categoryName, postCategory) {
+        if (categoryName === postCategory) {
+            document.getElementById("option_" + postCategory).selected = true;
+        }
+    }
+</script>
